@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Anime Website - Login</title>
+    <style>
+        /* Embedded CSS */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1, h2 {
+            color: #444;
+        }
+
+        header {
+            background-color: #222;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .login-container {
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            box-sizing: border-box;
+            margin-top: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus {
+            border-color: #6a5acd;
+            outline: none;
+        }
+
+        .input-group small {
+            font-size: 12px;
+            color: #888;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #6a5acd;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #5a4aad;
+        }
+
+        .forgot-password {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .forgot-password a {
+            color: #6a5acd;
+            text-decoration: none;
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .register-link a {
+            color: #6a5acd;
+            text-decoration: none;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            margin-top: 20px;
+            font-size: 14px;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .login-container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login to Anime World</h2>
+        <form id="loginForm" novalidate>
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required aria-describedby="usernameHelp">
+                <small id="usernameHelp" class="form-text">Your unique username to access your account.</small>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required aria-describedby="passwordHelp">
+                <small id="passwordHelp" class="form-text">Use your secure password to login.</small>
+            </div>
+            <button type="submit" class="submit-btn">Log In</button>
+            <p class="forgot-password"><a href="#">Forgot password?</a></p>
+        </form>
+        <p class="register-link">Don't have an account? <a href="register.html">Sign up here</a></p>
+        <div class="error-message" id="errorMessage"></div>
+    </div>
+
+    <script>
+        // Embedded JavaScript
+
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById("username").value.trim();
+            const password = document.getElementById("password").value.trim();
+            const errorMessage = document.getElementById("errorMessage");
+
+            // Reset previous error message
+            errorMessage.style.display = "none";
+            errorMessage.textContent = "";
+
+            if (username === "" || password === "") {
+                errorMessage.textContent = "Please fill in both fields.";
+                errorMessage.style.display = "block";
+                return;
+            }
+
+            // Simulate login check (replace this with actual server-side validation)
+            if (username === "user" && password === "123") {
+                // Redirect to the dashboard or home page
+                window.location.href = "dashboard.html";
+            } else {
+                errorMessage.textContent = "Incorrect username or password.";
+                errorMessage.style.display = "block";
+            }
+        });
+    </script>
+</body>
+</html>

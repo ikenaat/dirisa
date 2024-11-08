@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Anime World</title>
+    
+    <!-- Google Fonts and FontAwesome for modern typography and icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        /* General Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #1a1a1a;
+            color: #fff;
+            font-size: 16px;
+            line-height: 1.5;
+            padding: 0;
+            margin: 0;
+        }
+
+        h1, h2 {
+            color: #F5A623;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        p {
+            color: #ccc;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+        }
+
+        /* Search Bar and Buttons */
+        .search-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .search-container input {
+            width: 80%;
+            padding: 12px 20px;
+            border-radius: 5px;
+            border: 1px solid #444;
+            background-color: #333;
+            color: #fff;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-container input:focus {
+            outline: none;
+            border-color: #F5A623;
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            background-color: #F5A623;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #F49F00;
+        }
+
+        /* Anime Categories */
+        .anime-list {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .anime-card {
+            display: inline-block;
+            background-color: #333;
+            margin: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .anime-card:hover {
+            transform: scale(1.05);
+            background-color: #444;
+        }
+
+        /* Genre Section */
+        .anime-genres {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+
+        .genre-card {
+            background-color: #F5A623;
+            color: #fff;
+            padding: 15px 30px;
+            margin: 15px;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .genre-card:hover {
+            background-color: #F49F00;
+        }
+
+        /* Anime List by Genre */
+        .anime-list-by-genre {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        /* About Us and Contact Us Sections */
+        .about-us, .contact-us {
+            display: none;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .about-us h2, .contact-us h2 {
+            font-size: 2rem;
+            color: #F5A623;
+        }
+
+        .about-us p, .contact-us p {
+            margin-top: 20px;
+            font-size: 1.1rem;
+            color: #ccc;
+        }
+
+        /* Form Styles */
+        .contact-us form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-us input, .contact-us textarea {
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background-color: #222;
+            color: #fff;
+        }
+
+        .submit-btn {
+            padding: 12px;
+            background-color: #F5A623;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .submit-btn:hover {
+            background-color: #F49F00;
+        }
+
+        /* Image Container */
+        .image-container img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+
+        /* Logout Button */
+        .logout-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #F5A623;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            margin-top: 40px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background-color: #F49F00;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .search-container input {
+                width: 90%;
+            }
+
+            .anime-genres {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .genre-card {
+                margin: 10px;
+                width: 80%;
+                text-align: center;
+            }
+
+            .anime-card {
+                width: 100%;
+                margin: 10px 0;
+            }
+
+            .anime-list h2, .anime-genres h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background-overlay">
+        <div class="main-content">
+            <!-- Header -->
+            <header>
+                <h1>Welcome to Anime World!</h1>
+                <p>Your ultimate destination for anime!</p>
+            </header>
+
+            <!-- Text Above Search Bar -->
+            <p style="text-align:center;">Search your favorite anime and explore the world of animation!</p>
+
+            <!-- Search Bar and Buttons -->
+            <div class="search-container">
+                <input type="text" id="searchBar" placeholder="Search for anime..." onkeyup="searchAnime()">
+                <div class="btn-container">
+                    <button class="btn" onclick="toggleSection('aboutUs')">About Us</button>
+                    <button class="btn" onclick="toggleSection('contactUs')">Contact Us</button>
+                </div>
+            </div>
+
+            <!-- Popular Anime Section -->
+            <section class="anime-list">
+                <h2>Popular Anime</h2>
+                <div class="anime-card">Naruto</div>
+                <div class="anime-card">One Piece</div>
+                <div class="anime-card">Attack on Titan</div>
+                <div class="anime-card">Demon Slayer</div>
+                <div class="anime-card">Dragon Ball Z</div>
+                <div class="anime-card">My Hero Academia</div>
+            </section>
+
+            <!-- Anime Genre Selection -->
+            <section class="anime-genres">
+                <h2>Choose a Genre</h2>
+                <div class="genre-card" onclick="showAnime('Action')">Action</div>
+                <div class="genre-card" onclick="showAnime('Adventure')">Adventure</div>
+                <div class="genre-card" onclick="showAnime('Fantasy')">Fantasy</div>
+                <div class="genre-card" onclick="showAnime('Romance')">Romance</div>
+                <div class="genre-card" onclick="showAnime('Slice of Life')">Slice of Life</div>
+                <div class="genre-card" onclick="showAnime('Sci-Fi')">Sci-Fi</div>
+            </section>
+
+            <!-- Anime List by Genre -->
+            <section class="anime-list-by-genre">
+                <h2>Anime List</h2>
+                <div class="anime-list-container">
+                    <!-- Dynamic content will be inserted here based on genre selection -->
+                </div>
+            </section>
+
+            <!-- About Us Section -->
+            <section class="about-us" id="aboutUs">
+                <h2>About Us</h2>
+                <p>Anime World is a platform dedicated to bringing you the best anime content from around the world. Whether you're a newcomer or a seasoned anime fan, we aim to provide a rich collection of anime for every taste!</p>
+            </section>
+
+            <!-- Contact Us Section -->
+            <section class="contact-us" id="contactUs">
+                <h2>Contact Us</h2>
+                <form id="contactForm">
+                    <input type="text" id="name" placeholder="Enter your name" required>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                    <textarea id="message" placeholder="Write your message..." required></textarea>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </section>
+
+            <!-- Image Above Logout Button -->
+            <div class="image-container">
+                <img src="https://example.com/your-image.jpg" alt="Anime Image">
+            </div>
+
+            <!-- Logout Button -->
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+    </div>
+
+    <script>
+        const animeData = {
+            "Action": ["Attack on Titan", "Naruto", "My Hero Academia", "One Punch Man"],
+            "Adventure": ["Hunter x Hunter", "One Piece", "Fullmetal Alchemist", "Made in Abyss"],
+            "Fantasy": ["Sword Art Online", "Re:Zero", "The Rising of the Shield Hero", "Konosuba"],
+            "Romance": ["Your Name", "Toradora", "Clannad", "My Teen Romantic Comedy SNAFU"],
+            "Slice of Life": ["March Comes in Like a Lion", "Barakamon", "Anohana", "Honey and Clover"],
+            "Sci-Fi": ["Steins;Gate", "Cowboy Bebop", "Neon Genesis Evangelion", "Psycho-Pass"]
+        };
+
+        function showAnime(genre) {
+            const animeListContainer = document.querySelector('.anime-list-container');
+            const animeList = animeData[genre];
+            let listHTML = `<ul>`;
+            animeList.forEach(anime => {
+                listHTML += `<li>${anime}</li>`;
+            });
+            listHTML += `</ul>`;
+            animeListContainer.innerHTML = listHTML;
+        }
+
+        function logout() {
+            window.location.href = 'logpage.html';  // Redirect to login page
+        }
+
+        function toggleSection(sectionId) {
+            const aboutUsSection = document.getElementById('aboutUs');
+            const contactUsSection = document.getElementById('contactUs');
+            
+            if (sectionId === 'aboutUs') {
+                aboutUsSection.style.display = 'block';
+                contactUsSection.style.display = 'none';
+            } else if (sectionId === 'contactUs') {
+                contactUsSection.style.display = 'block';
+                aboutUsSection.style.display = 'none';
+            }
+        }
+
+        function searchAnime() {
+            const query = document.getElementById("searchBar").value.toLowerCase();
+            const animeCards = document.querySelectorAll(".anime-card");
+            animeCards.forEach(card => {
+                const animeName = card.textContent.toLowerCase();
+                if (animeName.includes(query)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
